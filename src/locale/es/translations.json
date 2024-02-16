@@ -1,0 +1,9 @@
+{
+  "home": {
+    "title": "Inicio"
+  },
+  "details": {"title": "Detalles"},
+  "error": "Ha ocurrido un error!",
+  "noData": "No hay datos para mostrar",
+  "schedule": "Desde {{from}} hasta {{end}}"
+}

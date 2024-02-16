@@ -1,0 +1,9 @@
+{
+  "home": {
+    "title": "Home"
+  },
+  "details": {"title": "Details"},
+  "error": "Something went wrong!",
+  "noData": "There is no data to show",
+  "schedule": "From {{from}} to {{end}}"
+}
