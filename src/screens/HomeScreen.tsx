@@ -10,6 +10,7 @@ import {
 import CardItem, {CardProps} from '../components/CardItem/CardItem';
 import {getStores} from '../api/stores';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
+import {Store} from '../interfaces/store';
 
 /**
  * Screen that renders a list of all resumed items.
@@ -42,7 +43,7 @@ const HomeScreen = () => {
           from: item.schedule.from,
           end: item.schedule.end,
         }),
-        handlePress: () => handlePressItem(item.id),
+        handlePress: () => handlePressItem(item),
       }));
       setData(formattedData);
     } else {
@@ -51,8 +52,8 @@ const HomeScreen = () => {
     setLoading(false);
   };
 
-  const handlePressItem = (id: string) => {
-    return navigation.navigate(...(['Details', {id}] as never));
+  const handlePressItem = (store: Store) => {
+    return navigation.navigate(...(['Details', {store}] as never));
   };
 
   if (loading) return <ActivityIndicator style={{marginTop: 20}} />;
