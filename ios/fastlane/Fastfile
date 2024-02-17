@@ -1,0 +1,5 @@
+platform :ios do
+  lane :build_ipa do
+    gym
+  end
+end

@@ -8,7 +8,11 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "pods": "cd ios && bundle exec pod install"
+    "pods": "cd ios && bundle exec pod install",
+    "build-ipa": "cd ios && fastlane ios build_ipa",
+    "build-apk": "cd android && ./gradlew app:assembleRelease",
+    "build-aab": "cd android && ./gradlew app:bundleRelease",
+    "clean-android": "cd android && ./gradlew clean"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.21.0",
