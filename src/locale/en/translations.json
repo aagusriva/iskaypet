@@ -7,7 +7,9 @@
     "task": {"assigned": "Assigned", "notAssigned": "Not assigned"}
   },
   "checkin": {
-    "title": "Check In"
+    "title": "Check In",
+    "retry": "Retry",
+    "goHome": "Go home"
   },
   "error": "Something went wrong!",
   "noData": "There is no data to show",

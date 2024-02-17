@@ -7,7 +7,9 @@
     "task": {"assigned": "Asignado", "notAssigned": "No asignado"}
   },
   "checkin": {
-    "title": "Check In"
+    "title": "Check In",
+    "retry": "Reintentar",
+    "goHome": "Ir al inicio"
   },
   "error": "Ha ocurrido un error!",
   "noData": "No hay datos para mostrar",
