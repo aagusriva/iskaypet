@@ -1,7 +1,14 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useCallback, useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {FlatList, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  FlatList,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import MapView from 'react-native-maps';
 import {Store} from '../interfaces/store';
 import CardItem, {CardProps} from '../components/CardItem/CardItem';
@@ -41,17 +48,19 @@ const DetailsScreen = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.mapContainer}>
-        <MapView
-          style={styles.map}
-          region={{
-            latitude: Number(store.address.coordinate.lat),
-            longitude: Number(store.address.coordinate.lng),
-            latitudeDelta: 0,
-            longitudeDelta: 0,
-          }}
-        />
-      </View>
+      {Platform.OS === 'ios' && (
+        <View style={styles.mapContainer}>
+          <MapView
+            style={styles.map}
+            region={{
+              latitude: Number(store.address.coordinate.lat),
+              longitude: Number(store.address.coordinate.lng),
+              latitudeDelta: 0,
+              longitudeDelta: 0,
+            }}
+          />
+        </View>
+      )}
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{store.name}</Text>
         <Badge
