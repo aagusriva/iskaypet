@@ -1,10 +1,12 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useCallback, useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, ScrollView, StyleSheet, Text, View} from 'react-native';
 import MapView from 'react-native-maps';
 import {Store} from '../interfaces/store';
 import CardItem, {CardProps} from '../components/CardItem/CardItem';
+import {Badge} from '@rneui/themed';
+import {COLORS} from '../constants/Colors';
 
 /**
  * Screen that renders an entire detail of an store.
@@ -27,7 +29,7 @@ const DetailsScreen = () => {
       subtitle: t(
         item.assigned ? 'details.task.assigned' : 'details.task.notAssigned',
       ),
-      disabled: item.assigned,
+      disabled: !store.open || item.assigned,
       handlePress: () => handlePressItem(store.id, item.id),
     }));
     setData(formattedData);
@@ -38,7 +40,7 @@ const DetailsScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.mapContainer}>
         <MapView
           style={styles.map}
@@ -50,36 +52,80 @@ const DetailsScreen = () => {
           }}
         />
       </View>
-      <FlatList
-        data={data}
-        ListEmptyComponent={<Text style={styles.noData}>{t('noData')}</Text>}
-        renderItem={({item}) => <CardItem {...item} />}
-        keyExtractor={item => item.id}
-      />
-    </View>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>{store.name}</Text>
+        <Badge
+          value={t(store.open ? 'details.open' : 'details.closed')}
+          badgeStyle={{
+            backgroundColor: store.open ? COLORS.success : COLORS.error,
+          }}
+          textStyle={styles.badgeText}
+        />
+      </View>
+      <View style={styles.dataContainer}>
+        <Text style={styles.subtitle}>{store.address.direction}</Text>
+        <Text style={styles.subtitle}>
+          {t('schedule', {
+            from: store.schedule.from,
+            end: store.schedule.end,
+          })}
+        </Text>
+      </View>
+      {data.map(item => (
+        <CardItem {...item} key={item.id} />
+      ))}
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    paddingBottom: 70,
+    paddingBottom: 30,
   },
   mapContainer: {
     height: 400,
-    width: '100%',
+    width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
+    alignSelf: 'center',
+    marginVertical: 10,
   },
   map: {
     height: 380,
     width: '100%',
   },
+  titleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '90%',
+    alignSelf: 'center',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'left',
+    maxWidth: '80%',
+  },
   noData: {
     fontSize: 18,
     textAlign: 'center',
     marginTop: 10,
+    alignSelf: 'center',
+  },
+  badgeText: {
+    color: COLORS.white,
+  },
+  subtitle: {
+    fontSize: 18,
+    textAlign: 'left',
+    marginTop: 10,
+  },
+  dataContainer: {
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    width: '90%',
     alignSelf: 'center',
   },
 });

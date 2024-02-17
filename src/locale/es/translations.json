@@ -4,7 +4,9 @@
   },
   "details": {
     "title": "Detalles",
-    "task": {"assigned": "Asignado", "notAssigned": "No asignado"}
+    "task": {"assigned": "Asignado", "notAssigned": "No asignado"},
+    "open": "Abierto",
+    "closed": "Cerrado"
   },
   "checkin": {
     "title": "Check In",
