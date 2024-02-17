@@ -2,6 +2,7 @@ import HomeScreen from '../screens/HomeScreen';
 import {useTranslation} from 'react-i18next';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import DetailsScreen from '../screens/DetailsScreen';
+import CheckInScreen from '../screens/CheckInScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,11 @@ const HomeNavigator = () => {
         name="Details"
         component={DetailsScreen}
         options={{title: t('details.title')}}
+      />
+      <Stack.Screen
+        name="CheckIn"
+        component={CheckInScreen}
+        options={{title: t('checkin.title')}}
       />
     </Stack.Navigator>
   );

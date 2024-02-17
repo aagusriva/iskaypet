@@ -2,7 +2,13 @@
   "home": {
     "title": "Home"
   },
-  "details": {"title": "Details"},
+  "details": {
+    "title": "Details",
+    "task": {"assigned": "Assigned", "notAssigned": "Not assigned"}
+  },
+  "checkin": {
+    "title": "Check In"
+  },
   "error": "Something went wrong!",
   "noData": "There is no data to show",
   "schedule": "From {{from}} to {{end}}"

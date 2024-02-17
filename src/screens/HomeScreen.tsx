@@ -37,9 +37,9 @@ const HomeScreen = () => {
     if (resp) {
       const formattedData = resp.map(item => ({
         id: item.id,
-        name: item.name,
-        address: item.address.direction,
-        schedule: t('schedule', {
+        title: item.name,
+        subtitle: item.address.direction,
+        disclaimer: t('schedule', {
           from: item.schedule.from,
           end: item.schedule.end,
         }),

@@ -36,16 +36,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '20%',
   },
-  name: {
+  title: {
     fontSize: 18,
     fontWeight: 'bold',
   },
-  address: {
+  subtitle: {
     fontSize: 14,
     fontWeight: 'normal',
-    marginVertical: 5
+    marginVertical: 5,
   },
-  schedule: {
+  disclaimer: {
     fontSize: 10,
     fontWeight: 'normal',
   },

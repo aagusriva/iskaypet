@@ -2,7 +2,13 @@
   "home": {
     "title": "Inicio"
   },
-  "details": {"title": "Detalles"},
+  "details": {
+    "title": "Detalles",
+    "task": {"assigned": "Asignado", "notAssigned": "No asignado"}
+  },
+  "checkin": {
+    "title": "Check In"
+  },
   "error": "Ha ocurrido un error!",
   "noData": "No hay datos para mostrar",
   "schedule": "Desde {{from}} hasta {{end}}"

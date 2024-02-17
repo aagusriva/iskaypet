@@ -6,10 +6,11 @@ import {COLORS} from '../../constants/Colors';
 
 export type CardProps = {
   id: string;
-  name: string;
-  address: string;
-  schedule: string;
+  title: string;
+  subtitle: string;
+  disclaimer?: string;
   handlePress: () => void;
+  disabled?: boolean;
 };
 
 /**
@@ -17,34 +18,41 @@ export type CardProps = {
  * Use an image, a title, the author and an star (optional) to save the item as favorite
  */
 const CardItem = (props: CardProps) => {
-  const {name, address, schedule, handlePress} = props;
+  const {title, subtitle, disclaimer, handlePress, disabled = false} = props;
 
   return (
-    <TouchableOpacity style={styles.container} onPress={handlePress}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={handlePress}
+      disabled={disabled}>
       <View style={styles.imageContainer}>
         <Icon type="material" name={'store'} color={COLORS.primary} size={50} />
       </View>
       <View style={styles.contentContainer}>
         <View style={styles.dataContainer}>
-          <Text style={styles.name} numberOfLines={2}>
-            {name}
+          <Text style={styles.title} numberOfLines={2}>
+            {title}
           </Text>
-          <Text style={styles.address} numberOfLines={1}>
-            {address}
+          <Text style={styles.subtitle} numberOfLines={1}>
+            {subtitle}
           </Text>
-          <Text style={styles.schedule} numberOfLines={1}>
-            {schedule}
-          </Text>
+          {disclaimer && (
+            <Text style={styles.disclaimer} numberOfLines={1}>
+              {disclaimer}
+            </Text>
+          )}
         </View>
-        <View style={styles.iconContainer}>
-          <Icon
-            type="material"
-            name={'keyboard-arrow-right'}
-            color={COLORS.secondary}
-            size={30}
-            onPress={handlePress}
-          />
-        </View>
+        {!disabled && (
+          <View style={styles.iconContainer}>
+            <Icon
+              type="material"
+              name={'keyboard-arrow-right'}
+              color={COLORS.secondary}
+              size={30}
+              onPress={handlePress}
+            />
+          </View>
+        )}
       </View>
     </TouchableOpacity>
   );
